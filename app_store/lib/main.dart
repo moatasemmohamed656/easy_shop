@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:app_store/store_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:app_store/core/app/env.variables.dart';
+import 'package:app_store/core/app/connectivity_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +13,9 @@ void main() async {
   await EnvVariables.instance.init(
     envType: EnvTypeEnum.dev,
   );
+
+  // Initialize connectivity controller
+  await ConnectivityController.instance.init();
 
   // Initialize Firebase
   try {
