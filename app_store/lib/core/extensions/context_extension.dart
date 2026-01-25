@@ -1,5 +1,5 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:app_store/core/language/app_localizations.dart';
 import 'package:app_store/core/style/theme/image_extensions.dart';
 import 'package:app_store/core/style/theme/color_extensions.dart';
 
@@ -9,6 +9,11 @@ extension Navigation on BuildContext {
 
   // images
   MyImages get assets => Theme.of(this).extension<MyImages>()!;
+
+  //Language
+  String translate(String langkey) {
+    return AppLocalizations.of(this)!.translate(langkey).toString();
+  }
 
   // Navigator
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
