@@ -1,6 +1,14 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:app_store/core/style/theme/image_extensions.dart';
+import 'package:app_store/core/style/theme/color_extensions.dart';
 
 extension Navigation on BuildContext {
+  //color
+  MyColor get color => Theme.of(this).extension<MyColor>()!;
+
+  // images
+  MyImages get assets => Theme.of(this).extension<MyImages>()!;
 
   // Navigator
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
@@ -8,19 +16,25 @@ extension Navigation on BuildContext {
   }
 
   Future<dynamic> pushReplacementNamed(String routeName, {Object? arguments}) {
-    return Navigator.of(this)
-        .pushReplacementNamed(routeName, arguments: arguments);
+    return Navigator.of(
+      this,
+    ).pushReplacementNamed(routeName, arguments: arguments);
   }
 
-  Future<dynamic> pushNamedAndRemoveUntil(String routeName,
-      {Object? arguments, required RoutePredicate predicate}) {
-    return Navigator.of(this)
-        .pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
+  Future<dynamic> pushNamedAndRemoveUntil(
+    String routeName, {
+    Object? arguments,
+    required RoutePredicate predicate,
+  }) {
+    return Navigator.of(
+      this,
+    ).pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
   }
 
   void pop() => Navigator.of(this).pop();
 }
 
+// CheckNotNull&NotEmpty
 extension StringExtension on String? {
   bool isNullOrEmpty() => this == null || this == "";
 }

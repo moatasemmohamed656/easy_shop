@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:app_store/core/routing/routes.dart';
 import 'package:app_store/core/app/env.variables.dart';
 import 'package:app_store/core/routing/app_router.dart';
+import 'package:app_store/core/style/theme/app_theme.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:app_store/core/app/connectivity_controller.dart';
 import 'package:app_store/core/common/screens/no_internet_screen.dart';
@@ -31,13 +32,13 @@ class StoreApp extends StatelessWidget {
             initialRoute: Routes.testOne,
             title: 'Store App',
             debugShowCheckedModeBanner: EnvVariables.instance.debugMode,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
+            theme: themeLight(),
             home: Scaffold(
               appBar: AppBar(
-                title: const Text("Store App"),
+                title: const Text(
+                  "Store App ",
+                  style: TextStyle(),
+                ),
               ),
             ),
           ),
