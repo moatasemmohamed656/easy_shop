@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:app_store/core/routing/routes.dart';
 import 'package:app_store/core/app/env.variables.dart';
+import 'package:app_store/core/routing/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:app_store/core/app/connectivity_controller.dart';
-import 'package:app_store/core/style/font/font_weight_helper.dart';
-import 'package:app_store/core/style/font/font_family_helper.dart';
 import 'package:app_store/core/common/screens/no_internet_screen.dart';
 
 class StoreApp extends StatelessWidget {
@@ -25,7 +25,10 @@ class StoreApp extends StatelessWidget {
         return ScreenUtilInit(
           designSize: const Size(375, 812),
           minTextAdapt: true,
+
           child: MaterialApp(
+            onGenerateRoute: AppRouter.onGenerateRoute,
+            initialRoute: Routes.testOne,
             title: 'Store App',
             debugShowCheckedModeBanner: EnvVariables.instance.debugMode,
             theme: ThemeData(
@@ -35,34 +38,6 @@ class StoreApp extends StatelessWidget {
             home: Scaffold(
               appBar: AppBar(
                 title: const Text("Store App"),
-              ),
-              body: Column(
-                children: [
-                  Text(
-                    "moatasem",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: FontFamilyHelper.poppinsEnglish,
-                      fontWeight: FontWeightHelper.bold,
-                    ),
-                  ),
-                  Text(
-                    "معتصم",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: FontFamilyHelper.cairoArabic,
-                      fontWeight: FontWeightHelper.bold,
-                    ),
-                  ),
-                  Text(
-                    "معتصم",
-                    style: TextStyle(
-                      fontSize: 30,
-
-                      fontWeight: FontWeightHelper.bold,
-                    ),
-                  ),
-                ],
               ),
             ),
           ),
