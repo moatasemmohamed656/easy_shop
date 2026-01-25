@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:app_store/core/style/color/colors_dark.dart';
 import 'package:app_store/core/style/color/colors_light.dart';
-import 'package:app_store/core/style/theme/image_extensions.dart';
 import 'package:app_store/core/style/theme/color_extensions.dart';
+import 'package:app_store/core/style/theme/assets_extensions.dart';
 
 ThemeData themeDark() {
   return ThemeData(
-    extensions: <ThemeExtension<dynamic>>[MyColor.dark, MyImages.dark],
+    extensions: <ThemeExtension<dynamic>>[MyColors.dark, MyAssets.dark],
     scaffoldBackgroundColor: ColorsDark.mainColor,
     useMaterial3: true,
   );
@@ -14,7 +14,7 @@ ThemeData themeDark() {
 
 ThemeData themeLight() {
   return ThemeData(
-    extensions: <ThemeExtension<dynamic>>[MyColor.light ,MyImages.light],
+    extensions: <ThemeExtension<dynamic>>[MyColors.light ,MyAssets.light],
     scaffoldBackgroundColor: ColorsLight.mainColor,
     useMaterial3: true,
   );

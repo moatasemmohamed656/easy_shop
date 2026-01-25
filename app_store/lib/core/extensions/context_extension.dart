@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:app_store/core/language/app_localizations.dart';
-import 'package:app_store/core/style/theme/image_extensions.dart';
 import 'package:app_store/core/style/theme/color_extensions.dart';
+import 'package:app_store/core/style/theme/assets_extensions.dart';
 
 extension Navigation on BuildContext {
   //color
-  MyColor get color => Theme.of(this).extension<MyColor>()!;
+  MyColors get color => Theme.of(this).extension<MyColors>()!;
 
   // images
-  MyImages get assets => Theme.of(this).extension<MyImages>()!;
+  MyAssets get assets => Theme.of(this).extension<MyAssets>()!;
 
   //Language
   String translate(String langkey) {
