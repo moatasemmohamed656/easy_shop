@@ -45,6 +45,25 @@ flutter:
     - assets/images/
     - assets/icons/
 
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/arabic/cairo/Cairo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/arabic/cairo/Cairo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/arabic/cairo/Cairo-Regular.ttf
+          weight: 400
+
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/english/poppins/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/english/poppins/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
+          weight: 400
+
 
 flutter_launcher_icons:
   android: true
