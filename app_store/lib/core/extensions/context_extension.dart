@@ -15,6 +15,9 @@ extension Navigation on BuildContext {
     return AppLocalizations.of(this)!.translate(langkey).toString();
   }
 
+  // style
+  TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
+
   // Navigator
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
