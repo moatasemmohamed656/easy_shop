@@ -29,10 +29,10 @@ class StoreApp extends StatelessWidget {
           minTextAdapt: true,
           child: MaterialApp(
             onGenerateRoute: AppRouter.onGenerateRoute,
-            initialRoute: Routes.testOne,
+            initialRoute: Routes.loginScreen,
             title: 'Store App',
             debugShowCheckedModeBanner: EnvVariables.instance.debugMode,
-            theme: themeLight(),
+            theme: themeDark(),
             locale: Locale("en"),
             supportedLocales: AppLocalizationsSetup.supportedLocales,
             localizationsDelegates:
