@@ -3,16 +3,17 @@ import 'package:app_store/core/routing/routes.dart';
 import 'package:app_store/core/language/lang_keys.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:app_store/core/common/widgets/app_text.dart';
-import 'package:app_store/core/common/animations/animate_do.dart';
 import 'package:app_store/core/extensions/context_extension.dart';
+import 'package:app_store/core/common/animations/animate_do.dart';
 import 'package:app_store/core/style/font/font_weight_helper.dart';
 import 'package:app_store/features/auth/presentation/widgets/auth_title_info.dart';
-import 'package:app_store/features/auth/presentation/widgets/login/login_button.dart';
+import 'package:app_store/features/auth/presentation/widgets/signup/user_avatar.dart';
 import 'package:app_store/features/auth/presentation/widgets/dark_and_lang_button.dart';
-import 'package:app_store/features/auth/presentation/widgets/login/login_text_form.dart';
+import 'package:app_store/features/auth/presentation/widgets/signup/sign_up_button.dart';
+import 'package:app_store/features/auth/presentation/widgets/signup/sign_up_text_form.dart';
 
-class LoginBody extends StatelessWidget {
-  const LoginBody({super.key});
+class SignUpBody extends StatelessWidget {
+  const SignUpBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,36 +30,42 @@ class LoginBody extends StatelessWidget {
             ),
             // welcome info
             AuthTitleInfo(
-              title: context.translate(LangKeys.login),
-              dec: context.translate(LangKeys.createAccount),
+              title: context.translate(LangKeys.signUp),
+              dec: context.translate(LangKeys.welcome),
             ),
             SizedBox(
               height: 30.h,
             ),
 
-            // login TextForm
-            LoginTextForm(),
+            // User Avatar image
+            UserAvatar(),
+
+            SizedBox(
+              height: 30,
+            ),
+            // Signup TextForm
+            SignUpTextForm(),
 
             SizedBox(
               height: 30.h,
             ),
 
-            // Login Button
-            LoginButton(),
+            // Signup Button
+            SignUpButton(),
 
             SizedBox(
               height: 30.h,
             ),
 
-            // Go to sign Up Screen
+            // Go to Login Screen
             CustomFadeInDown(
               duration: 400,
               child: TextButton(
                 onPressed: () {
-                  context.pushReplacementNamed(Routes.signUpScreen);
+                  context.pushReplacementNamed(Routes.loginScreen);
                 },
                 child: AppText(
-                  text: context.translate(LangKeys.createAccount),
+                  text: context.translate(LangKeys.youHaveAccount),
                   theme: context.textStyle.copyWith(
                     fontSize: 16.sp,
                     fontWeight: FontWeightHelper.bold,
