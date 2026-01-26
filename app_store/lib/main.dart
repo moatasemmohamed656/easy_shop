@@ -2,7 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:app_store/store_app.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:app_store/core/app/bloc_observer.dart';
 import 'package:app_store/core/app/env.variables.dart';
 import 'package:app_store/core/app/connectivity_controller.dart';
 
@@ -13,6 +15,8 @@ void main() async {
   await EnvVariables.instance.init(
     envType: EnvTypeEnum.dev,
   );
+     // Bloc Observer
+  Bloc.observer = AppBlocObserver();
 
   // Initialize connectivity controller
   await ConnectivityController.instance.init();
