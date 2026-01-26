@@ -25,6 +25,7 @@ dependencies:
   firebase_core: ^4.3.0
   # localizations
   flutter_localization: ^0.3.3
+  animate_do: ^4.2.0
 
 
 dev_dependencies:
@@ -47,7 +48,11 @@ flutter:
     - assets/images/
     - assets/icons/
     - lang/ar.json
-    - lang\en.json
+    - lang/en.json
+    - assets/images/admin/
+    - assets/images/core/
+    - assets/images/customer/
+    
 
   fonts:
     - family: Cairo
