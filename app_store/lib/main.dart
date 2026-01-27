@@ -22,7 +22,7 @@ void main() async {
 
   await SharedPref().instantiatePreferences();
 
-  await setUpInjector();
+  await setupInjector();
 
   // Initialize connectivity controller
   await ConnectivityController.instance.init();
