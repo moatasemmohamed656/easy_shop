@@ -24,7 +24,7 @@ class SignUpBody extends StatelessWidget {
         child: Column(
           children: [
             // Dark mode and lang
-            const DarkAndLangButton(),
+             DarkAndLangButton(),
             SizedBox(
               height: 50.h,
             ),
