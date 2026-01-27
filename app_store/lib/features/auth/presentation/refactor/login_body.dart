@@ -23,14 +23,14 @@ class LoginBody extends StatelessWidget {
         child: Column(
           children: [
             // Dark mode and lang
-            const DarkAndLangButton(),
+            DarkAndLangButton(),
             SizedBox(
               height: 50.h,
             ),
             // welcome info
             AuthTitleInfo(
               title: context.translate(LangKeys.login),
-              dec: context.translate(LangKeys.createAccount),
+              dec: context.translate(LangKeys.welcome),
             ),
             SizedBox(
               height: 30.h,

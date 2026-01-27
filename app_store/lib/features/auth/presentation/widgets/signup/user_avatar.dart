@@ -10,7 +10,7 @@ class UserAvatar extends StatelessWidget {
       duration: 500,
       child: CircleAvatar(
         radius: 38,
-        backgroundImage: NetworkImage(""),
+        // backgroundImage: NetworkImage(""),
       ),
     );
   }
