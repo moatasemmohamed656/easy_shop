@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:app_store/core/services/shared_pref/pref_keys.dart';
 import 'package:app_store/core/services/shared_pref/shared_pref.dart';
@@ -13,18 +12,24 @@ class DioFactory {
     const timeOut = Duration(seconds: 30);
 
     if (dio == null) {
-      dio = Dio();
-      dio!
+      dio = Dio()
         ..options.connectTimeout = timeOut
-        ..options.receiveTimeout = timeOut
-        ..options.headers['Authorization'] =
-            'Bearer ${SharedPref().getString(PrefKeys.accessToken)}';
+        ..options.receiveTimeout = timeOut;
 
-      debugPrint(
-        "[USER Token] ====> ${SharedPref().getString(PrefKeys.accessToken) ?? 'NULL TOKEN'}",
+      dio!.interceptors.add(
+        InterceptorsWrapper(
+          onRequest: (options, handler) {
+            final token = SharedPref().getString(PrefKeys.accessToken);
+            if (token != null) {
+              options.headers['Authorization'] = 'Bearer $token';
+            }
+            return handler.next(options);
+          },
+        ),
       );
 
       addDioInterceptor();
+
       return dio!;
     } else {
       return dio!;

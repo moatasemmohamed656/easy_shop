@@ -15,7 +15,6 @@ import 'package:app_store/core/common/screens/no_internet_screen.dart';
 
 class StoreApp extends StatelessWidget {
   const StoreApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
@@ -28,29 +27,30 @@ class StoreApp extends StatelessWidget {
             home: const NoInternetScreen(),
           );
         }
-
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider<AppCubit>(
-              create: (context) => sl<AppCubit>()
-                ..changeAppThemeMode(
-                  sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
-                ),
-            ),
-
-            BlocProvider<AppCubit>(
-              create: (context) => sl<AppCubit>()..getSavedLanguage(),
-            ),
-          ],
+        return BlocProvider<AppCubit>(
+          create: (context) => sl<AppCubit>()
+            ..changeAppThemeMode(
+              sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
+            )
+            ..getSavedLanguage(),
           child: ScreenUtilInit(
             designSize: const Size(375, 812),
             minTextAdapt: true,
             child: BlocBuilder<AppCubit, AppState>(
               builder: (context, state) {
                 final cubit = context.read<AppCubit>();
+                print(
+                  '[DEBUG] Current theme: ${cubit.isDark ? "Dark" : "Light"}',
+                );
+                print('[DEBUG] Current language: ${cubit.currentLangCode}');
                 return MaterialApp(
                   onGenerateRoute: AppRouter.onGenerateRoute,
-                  initialRoute: Routes.loginScreen,
+                  initialRoute:
+                      SharedPref().getString(PrefKeys.accessToken) != null
+                      ? SharedPref().getString(PrefKeys.role) == 'admin'
+                            ? Routes.homeAdmin
+                            : Routes.homeCustomer
+                      : Routes.loginScreen,
                   title: 'Store App',
                   debugShowCheckedModeBanner: EnvVariables.instance.debugMode,
                   theme: cubit.isDark ? themeDark() : themeLight(),
@@ -60,14 +60,6 @@ class StoreApp extends StatelessWidget {
                       AppLocalizationsSetup.localizationsDelegates,
                   localeResolutionCallback:
                       AppLocalizationsSetup.localeResolutionCallback,
-                  home: GestureDetector(
-                    onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-                    child: Scaffold(
-                      appBar: AppBar(
-                        title: const Text("Store App"),
-                      ),
-                    ),
-                  ),
                 );
               },
             ),
