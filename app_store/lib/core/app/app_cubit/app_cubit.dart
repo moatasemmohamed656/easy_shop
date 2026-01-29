@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:app_store/core/di/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:app_store/core/services/shared_pref/pref_keys.dart';
 import 'package:app_store/core/services/shared_pref/shared_pref.dart';
@@ -21,6 +22,8 @@ class AppCubit extends Cubit<AppState> {
     } else {
       isDark = !isDark;
       await SharedPref().setBoolean(PrefKeys.themeMode, isDark);
+     
+      print('[DEBUG] Saved theme to SharedPref: isDark = $isDark');
       emit(AppState.themeChangeMode(isDark: isDark));
     }
   }
@@ -32,6 +35,7 @@ class AppCubit extends Cubit<AppState> {
         : 'en';
 
     currentLangCode = result!;
+    print('[DEBUG] Loaded language from SharedPref: $currentLangCode');
 
     emit(AppState.languageChange(locale: Locale(currentLangCode)));
   }
