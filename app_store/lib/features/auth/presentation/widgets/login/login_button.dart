@@ -5,8 +5,8 @@ import 'package:app_store/core/language/lang_keys.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:app_store/core/common/toast/show_toast.dart';
 import 'package:app_store/core/common/widgets/app_text.dart';
-import 'package:app_store/core/extensions/context_extension.dart';
 import 'package:app_store/core/common/animations/animate_do.dart';
+import 'package:app_store/core/extensions/context_extension.dart';
 import 'package:app_store/core/style/font/font_weight_helper.dart';
 import 'package:app_store/core/services/shared_pref/pref_keys.dart';
 import 'package:app_store/core/services/shared_pref/shared_pref.dart';
@@ -14,6 +14,7 @@ import 'package:app_store/core/common/widgets/custom_linear_button.dart';
 import 'package:app_store/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:app_store/features/auth/presentation/bloc/auth_event.dart';
 import 'package:app_store/features/auth/presentation/bloc/auth_state.dart';
+
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
@@ -23,7 +24,7 @@ class LoginButton extends StatelessWidget {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         state.whenOrNull(
-          success: (user) async {
+          loginSuccess: (user) async {
             final token = await SharedPref().getString(PrefKeys.accessToken);
             debugPrint('Token after login: $token');
             ShowToast.showToastSuccessTop(
@@ -31,9 +32,9 @@ class LoginButton extends StatelessWidget {
             );
 
             if (user.role == "admin") {
-              context.pushNamed(Routes.homeAdmin);
+              context.pushName(Routes.homeAdmin);
             } else {
-              context.pushNamed(Routes.homeCustomer);
+              context.pushName(Routes.homeCustomer);
             }
           },
           error: (message) {

@@ -2,7 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:app_store/core/services/api/api_result.dart';
 import 'package:app_store/core/services/shared_pref/pref_keys.dart';
 import 'package:app_store/core/services/shared_pref/shared_pref.dart';
+import 'package:app_store/features/auth/data/models/sign_up_response.dart';
 import 'package:app_store/features/auth/data/models/login_request_body.dart';
+import 'package:app_store/features/auth/data/models/sign_up_reguest_body.dart';
 import 'package:app_store/features/auth/data/data_source/auth_data_source.dart';
 import 'package:app_store/features/auth/data/models/user_profile_response.dart';
 
@@ -61,6 +63,18 @@ class AuthRepo {
     } catch (e, stack) {
       debugPrint('🔥 AuthRepo ERROR: $e');
       debugPrint('STACK TRACE:\n$stack');
+      return ApiResult.error(e.toString());
+    }
+  }
+
+  Future<ApiResult<SignUpResponse>> signUp(SignUpRequestBody body) async {
+    try {
+      debugPrint('🔐 AuthRepo: start sign up');
+      final response = await _dataSource.signUp(body);
+      return ApiResult.success(response);
+    } catch (e) {
+      debugPrint('🔥 AuthRepo ERROR: $e');
+      debugPrint('STACK TRACE:\n$e');
       return ApiResult.error(e.toString());
     }
   }

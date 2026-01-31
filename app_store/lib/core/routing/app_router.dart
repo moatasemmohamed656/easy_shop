@@ -21,12 +21,17 @@ class AppRouter {
         );
 
       case Routes.signUpScreen:
-        return AnimationRouting(page: SignUpScreen());
+        return AnimationRouting(
+          page: BlocProvider(
+            create: (context) => sl<AuthBloc>(),
+            child: SignUpScreen(),
+          ),
+        );
 
-        case Routes.homeAdmin:
+      case Routes.homeAdmin:
         return AnimationRouting(page: HomeAdmin());
 
-        case Routes.homeCustomer:
+      case Routes.homeCustomer:
         return AnimationRouting(page: HomeCustomer());
 
       default:
