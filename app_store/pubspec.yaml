@@ -41,6 +41,9 @@ dependencies:
   animate_do: ^4.2.0
   # toast
   fluttertoast: ^9.0.0
+  # image picker
+  image_picker: ^1.2.1
+  permission_handler: ^12.0.1
 
 
 dev_dependencies:

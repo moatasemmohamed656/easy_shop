@@ -6,10 +6,17 @@ part 'auth_state.freezed.dart';
 @freezed
 class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
+
   const factory AuthState.loading() = Loading;
-  const factory AuthState.success({
-    required UserProfileResponse userRole,
-  }) = Success;
+
+  /// Login success
+  const factory AuthState.loginSuccess({
+    required UserProfileResponse userProfile,
+  }) = Loginsuccess;
+
+  /// Sign up success
+  const factory AuthState.signUpSuccess() = SignUpSuccess;
+
   const factory AuthState.error({
     required String message,
   }) = Error;

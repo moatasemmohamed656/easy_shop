@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:app_store/core/di/injection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:app_store/core/services/shared_pref/pref_keys.dart';
 import 'package:app_store/core/services/shared_pref/shared_pref.dart';
