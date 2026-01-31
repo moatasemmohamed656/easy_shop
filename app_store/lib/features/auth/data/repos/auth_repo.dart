@@ -17,11 +17,15 @@ class AuthRepo {
     LoginRequestBody body,
   ) async {
     try {
+
+   
+    debugPrint('🗑️ Old tokens cleared');
       debugPrint('🔐 AuthRepo: start login');
 
       // LOGIN
       final loginResponse = await _dataSource.login(body);
       final token = loginResponse.accessToken;
+      final refreshToken = loginResponse.refreshToken;
 
       if (token == null || token.isEmpty) {
         debugPrint('❌ AuthRepo: token is null or empty');

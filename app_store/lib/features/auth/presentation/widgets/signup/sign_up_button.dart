@@ -12,6 +12,7 @@ import 'package:app_store/core/common/widgets/custom_linear_button.dart';
 import 'package:app_store/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:app_store/features/auth/presentation/bloc/auth_event.dart';
 import 'package:app_store/features/auth/presentation/bloc/auth_state.dart';
+import 'package:app_store/core/app/upload_image/cubit/upload_image_cubit.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({super.key});
@@ -25,7 +26,7 @@ class SignUpButton extends StatelessWidget {
             ShowToast.showToastSuccessTop(
               message: context.translate(LangKeys.loggedSuccessfully),
             );
-            context.pushNamedAndRemoveUntil(Routes.homeCustomer);
+            context.pushNamedAndRemoveUntil(Routes.loginScreen);
           },
 
           error: (message) {
@@ -39,9 +40,14 @@ class SignUpButton extends StatelessWidget {
         return state.maybeWhen(
           loading: () => CustomFadeInRight(
             duration: 600,
-            child: Center(
-              child: const CircularProgressIndicator(
-                color: Colors.white,
+            child: CustomLinearButton(
+              height: 50.h,
+              width: MediaQuery.of(context).size.width,
+              onPressed: () {},
+              child: Center(
+                child: const CircularProgressIndicator(
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -53,7 +59,7 @@ class SignUpButton extends StatelessWidget {
                 height: 50.h,
                 width: MediaQuery.of(context).size.width,
                 onPressed: () {
-                  context.read<AuthBloc>().add(SignUpEvent(imgUrl: ''));
+                  _handleSignUp(context);
                 },
                 child: AppText(
                   text: context.translate(LangKeys.signUp),
@@ -70,4 +76,22 @@ class SignUpButton extends StatelessWidget {
       },
     );
   }
+}
+
+void _handleSignUp(BuildContext context) {
+  final uploadCubit = context.read<UploadImageCubit>();
+
+  // تحقق من وجود رابط الصورة
+  if (uploadCubit.uploadedImageUrl == null ||
+      uploadCubit.uploadedImageUrl!.isEmpty) {
+    ShowToast.showToastErrorTop(
+      message: context.translate(LangKeys.imageUploaded),
+    );
+    return;
+  }
+
+  // أرسل طلب التسجيل مع رابط الصورة
+  context.read<AuthBloc>().add(
+    SignUpEvent(imgUrl: uploadCubit.uploadedImageUrl!), // ✅ رابط الصورة
+  );
 }

@@ -6,6 +6,7 @@ import 'package:app_store/features/admin/home_admin.dart';
 import 'package:app_store/core/routing/animation_routing.dart';
 import 'package:app_store/features/customer/home_customer.dart';
 import 'package:app_store/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:app_store/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:app_store/features/auth/presentation/screens/login_screen.dart';
 import 'package:app_store/features/auth/presentation/screens/sign_up_screen.dart';
 
@@ -22,8 +23,15 @@ class AppRouter {
 
       case Routes.signUpScreen:
         return AnimationRouting(
-          page: BlocProvider(
-            create: (context) => sl<AuthBloc>(),
+          page: MultiBlocProvider(
+            providers: [
+              BlocProvider<AuthBloc>(
+                create: (context) => sl<AuthBloc>(),
+              ),
+              BlocProvider<UploadImageCubit>(
+                create: (context) => sl<UploadImageCubit>(),
+              ),
+            ],
             child: SignUpScreen(),
           ),
         );

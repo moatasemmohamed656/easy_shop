@@ -46,10 +46,12 @@ class _LoginTextFormState extends State<SignUpTextForm> {
             duration: 200,
             child: CustomTextField(
               controller: _authBloc.nameController,
-
               hintText: context.translate(LangKeys.fullName),
               keyboardType: TextInputType.name,
               validator: (value) {
+                if (!AppRegex.isNameValid(_authBloc.nameController.text)) {
+                  return context.translate(LangKeys.validName);
+                }
                 return null;
               },
             ),
@@ -75,6 +77,7 @@ class _LoginTextFormState extends State<SignUpTextForm> {
           SizedBox(
             height: 25.h,
           ),
+          // Password
           CustomFadeInLeft(
             duration: 400,
             child: CustomTextField(
