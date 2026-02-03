@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_store/core/di/injection.dart';
 import 'package:app_store/core/routing/routes.dart';
-import 'package:app_store/features/admin/home_admin.dart';
 import 'package:app_store/core/routing/animation_routing.dart';
 import 'package:app_store/features/customer/home_customer.dart';
 import 'package:app_store/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:app_store/features/auth/presentation/screens/login_screen.dart';
 import 'package:app_store/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:app_store/features/admin/home_admin/presentation/screens/home_admin_screen.dart';
 
 class AppRouter {
   static Route<void> onGenerateRoute(RouteSettings settings) {
@@ -24,7 +24,7 @@ class AppRouter {
         return AnimationRouting(page: SignUpScreen());
 
         case Routes.homeAdmin:
-        return AnimationRouting(page: HomeAdmin());
+        return AnimationRouting(page: HomeAdminScreen());
 
         case Routes.homeCustomer:
         return AnimationRouting(page: HomeCustomer());

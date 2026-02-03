@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class HomeAdmin extends StatelessWidget {
-  const HomeAdmin({super.key});
+class AddProducts extends StatelessWidget {
+  const AddProducts({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Admin"),),
+      body: Center(child: Text('AddProducts')),
     );
   }
 }

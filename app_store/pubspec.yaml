@@ -41,6 +41,7 @@ dependencies:
   animate_do: ^4.2.0
   # toast
   fluttertoast: ^9.0.0
+  flutter_zoom_drawer: ^3.2.0
 
 
 dev_dependencies:
